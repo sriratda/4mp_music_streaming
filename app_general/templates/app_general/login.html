@@ -1,0 +1,38 @@
+{% extends 'app_general/components/base.html' %}
+
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<body style="background-image:url({% static 'app_general/concert.jpg' %}); background-attachment: fixed; background-size: cover;">
+        <section id="main">
+        <aside id="sidebar">
+          <div class="dark radius-good">
+            <h2>4PM MUSIC</h2>
+
+            <form method="POST" class="quote" action="">
+              {% csrf_token %}
+  						<div>
+  							<label>Username</label><br>
+  							<input type="username" placeholder="Username" name="username">
+  						</div>
+  						<div>
+  							<label>Password</label><br>
+  							<input type="password" placeholder="Password" name="password">
+  						</div>
+  						<button class="button_1" type="submit">Log in</button>
+					  </form>
+          {% for message in messages %}
+          <h3>{{ message }}</h3>
+          {% endfor %}
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <footer style="position: fixed; left: 0; bottom: 0;">
+      <p>4PM MUSIC, Copyright &copy; 2022</p>
+    </footer>
+  </body>
+{% endblock  %}

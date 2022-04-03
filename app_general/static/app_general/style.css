@@ -1,0 +1,474 @@
+body{
+  font: 15px/1.5 Arial, Helvetica,sans-serif;
+  padding:0;
+  margin:0;
+  background-color:#f4f4f4;
+}
+
+/* Global */
+.container{
+  width:80%;
+  margin:auto;
+  overflow:hidden;
+}
+
+h1.main-center{
+  font-size:55px;
+  text-shadow: 1px 1px 9px black;
+}
+
+ul{
+  margin:0;
+  padding:0;
+}
+
+.button_1 {
+  height:38px;
+  background:#e8491d;
+  border:0;
+  padding-left: 20px;
+  padding-right:20px;
+  color:#ffffff;
+  margin-top: 5px;
+  border-radius: 2px;
+}
+
+.button_1:hover {
+  background:#da3305;
+}
+
+.dark{
+  padding:15px;
+  background:#35424a;
+  color:#ffffff;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.radius-good {
+  border:hidden;
+  border-radius: 10px;
+}
+
+/* Header **/
+header{
+  background:#000000;
+  color:#ffffff;
+  padding-top:30px;
+  min-height:70px;
+  border-bottom:#e8491d 3px solid;
+}
+
+header a{
+  color:#ffffff;
+  text-decoration:none;
+  text-transform: uppercase;
+  font-size:16px;
+}
+
+header li{
+  float:left;
+  display:inline;
+  padding: 0 20px 0 20px;
+}
+
+header #branding{
+  float:left;
+  padding-right: 15px;
+}
+
+header #branding img {
+  width: 40px;
+}
+
+header #branding h1{
+  margin:0;
+}
+header input[type="search"]{
+  border-style: hidden;
+  border-radius: 10px;
+  float: right;
+  padding:10px;
+  height:25px;
+  width:250px;
+}
+
+
+header nav{
+  /* float:right; */
+  margin-top:10px;
+}
+
+header .highlight, header .current a{
+  color:#e8491d;
+  font-weight:bold;
+}
+
+header a:hover{
+  color:#cccccc;
+  font-weight:bold;
+}
+
+/* Showcase */
+#showcase{
+  min-height:400px;
+  background:url('../img/concert.jpg') no-repeat 0 -400px;
+  text-align:center;
+  color:#ffffff;
+}
+
+#showcase h1{
+  margin-top:100px;
+  font-size:55px;
+  margin-bottom:10px;
+}
+
+#showcase p{
+  font-size:20px;
+}
+
+/* Newsletter */
+#newsletter{
+  padding:15px;
+  color:#ffffff;
+  background:#35424a
+}
+
+#newsletter h1{
+  float:left;
+}
+
+#newsletter form {
+  float:right;
+  margin-top:15px;
+}
+
+#newsletter input[type="email"]{
+  padding:4px;
+  height:25px;
+  width:250px;
+}
+
+/* Boxes */
+#boxes{
+  margin-top:20px;
+}
+
+#boxes .box{
+  float:left;
+  text-align: center;
+  width:30%;
+  padding: 20px;
+}
+
+#boxes .box img{
+  width: 200px;
+}
+
+div .box:hover{
+  background-color: rgba(44, 42, 42, 0.5);
+
+}
+/* Sidebar */
+aside#sidebar{
+  margin: auto;
+  width:30%;
+  margin-top: 60px;
+}
+
+aside#sidebar h2{
+  text-align: center;
+
+}
+
+aside#sidebar .quote input, aside#sidebar .quote textarea{
+  width:95%;
+  padding:5px;
+  margin-bottom: 10px;
+  border: hidden;
+  border-radius: 6px;
+}
+
+.quote input, .quote textarea{
+  width:95%;
+  padding:5px;
+  margin-bottom: 10px;
+  border: hidden;
+  border-radius: 6px;
+}
+
+#main {
+  margin-bottom: 200px;
+}
+
+/* Main-col */
+article#main-col{
+  float:left;
+  width:65%;
+}
+
+/* Services */
+ul#services li{
+  list-style: none;
+  padding:20px;
+  border: #cccccc solid 1px;
+  margin-bottom:5px;
+  background:#e6e6e6;
+}
+
+.margin-add-playlist {
+  margin-bottom: 410px;
+}
+
+footer {
+  width: 100%;
+  padding:20px;
+  margin-top:20px;
+  color:#ffffff;
+  background-color:#000000;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+/* Modal */
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-contents {
+	height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+
+.bg-modal input {
+	margin: 15px auto;
+	display: block;
+	width: 50%;
+	padding: 8px;
+	border: 1px solid gray;
+}
+
+.close {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+}
+
+/* song in playlist */
+#playlist{
+  list-style: none;
+}
+
+#playlist li a{
+  color:black;
+  text-decoration: none;
+}
+
+#playlist .current-song{
+  color:blue;
+}
+
+/* List Form */
+.form-list-setting {
+  margin-top: 50px;
+  margin-left: 5px;
+}
+
+.form-input .form-input {
+  width: 80%;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding: 0 5px;
+}
+
+.form-button {
+  width: 50px;
+  height: 40px;
+  border: none;
+  background: teal;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+/* Select playlist */
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: var(--darkgray);
+  background-image: none;
+  cursor: pointer;
+}
+
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 10em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  background-color: #34495e;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+  background-color: #34495e;
+}
+
+#playlist-option option{
+  background-color: #34495e;
+}
+
+.ul-list {
+  list-style: none;
+  width: 100%;
+}
+
+.ul-list li {
+  width: 90%;
+  background-color: #fff;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 5px;
+  position: relative;
+  cursor: pointer;
+  display: block;
+  margin: 5px;
+  color: #000000;
+}
+
+.ul-list li span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  text-align: center;
+  background-color: red;
+}
+
+/* List link */
+.list-link :hover {
+  text-decoration: none;
+  color: black;
+}
+
+.list-link :visited {
+  text-decoration: none;
+  color: black;
+}
+
+.columns-container {
+  columns: 300px 3;
+  column-gap: 3rem;
+}
+
+.img-adjust {
+  /* float: left; */
+  width:  80px;
+  height: 160px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Media Queries */
+@media(max-width: 768px){
+  header #branding,
+  header nav,
+  header nav li,
+  header form,
+  #newsletter h1,
+  #newsletter form,
+  #boxes .box,
+  article#main-col,
+  aside#sidebar{
+    float:none;
+    text-align:center;
+    width:100%;
+  }
+
+  body{
+    background-image: url("./img/concert.jpj");
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  aside#sidebar {
+    width: 90%;
+  }
+
+  header{
+    padding-bottom:20px;
+  }
+
+  #showcase h1{
+    margin-top:40px;
+  }
+
+
+  #newsletter button, .quote button{
+    display:block;
+    width:100%;
+  }
+
+  header form input[type="search"], .quote input, .quote textarea{
+    width:100%;
+    margin-top: 10px;
+    margin-bottom:5px;
+  }
+
+}

@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Affordable and professional web design">
+	  <meta name="keywords" content="web design, affordable web design, professional web design">
+  	<meta name="author" content="Brad Traversy">
+    <title>Playlist| 4PM MUSIC</title>
+    <link rel="stylesheet" href="{% static '/app_general/style.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'app_general/style.css' %}"> {% endcomment %}
+  </head>
+  <body>
+    {% if results %}
+    <div class="container bg-dark p-2">
+    {% for x in results %}
+    <ol class="list-group mt-1">
+      <li class="list-group-item bg-info text-center"><h3 class="text-white" >{{x.name}}</h3></li>
+      {% comment %} <li class="list-group-item" ><a href='{{x.preview_url}}'><button type="button" class="btn btn-success btn-lg mt-1">PLAY SONG</button></a></li> {% endcomment %}
+      <li class="list-group-item"><img src="{{x.album.images.0.url}}" class="img-fluid img-thumbnail" alt=""></li>
+    </ol><hr>
+    {% endfor %}
+    </div>
+     {% endif %}
+  </body>

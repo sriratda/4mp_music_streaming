@@ -1,0 +1,45 @@
+{% load static %}
+<script src="{% static 'app_general/script.js' %}" type="text/javascript"></script>
+<script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+
+<footer style="position:fixed; background: rgb(14,14,14);
+background: linear-gradient(0deg, rgba(14,14,14,0.6) 5%, rgba(0,2,10,0.6) 13%, rgba(0,0,0,0.6) 15%, rgba(0,2,10,0.6) 26%, rgba(0,1,4,0.6) 40%, rgba(2,3,7,0.6) 59%, rgba(7,8,12,0.6) 62%, rgba(28,29,34,0.6) 95%, rgba(17,18,24,0.6) 100%, rgba(247,247,247,0.6) 100%);">
+<div>
+    <audio src="" controls id="audioPlayer">
+        Sorry, your browser doesn't support html5!
+    </audio>
+</div>
+<script>
+    audioPlayer();
+    var played = false;
+    var tillPlayed = getCookie('timePlayed');
+    var song = document.getElementsByTagName('audio')[0];
+    // alert(tillPlayed)
+    function update()
+    {
+        if(!song.paused){
+            setCookie('statusSong',true)
+            if(!played){
+                if(tillPlayed){
+                song.currentTime = tillPlayed;
+                song.play();
+                played = true
+                }
+                else {
+                        song.play();
+                        played = true;
+                }
+            }
+
+            else {
+            setCookie('timePlayed', song.currentTime);
+            }
+        }
+        else{
+            setCookie('statusSong',false)
+            setCookie('timePlayed', song.currentTime);
+        }
+    }
+    setInterval(update,100);
+</script>
+</footer>

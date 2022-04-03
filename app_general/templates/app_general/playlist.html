@@ -1,0 +1,120 @@
+{% extends 'app_general/components/base.html' %}
+{% load static %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<style>
+  header{
+  background:#000000;
+  color:#ffffff;
+  padding-top:30px;
+  min-height:70px;
+  border-bottom:#e8491d 3px solid;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.ul-list {
+  list-style: none;
+  width: 100%;
+}
+
+h2 {
+  color: #ffffff;
+  font-size: 30px;
+  margin: 0px;
+}
+
+.dark {
+  background: #191a1d;
+}
+
+a {
+  color: #909297;
+  text-decoration: none;
+}
+
+
+.ul-list {
+  margin-top: 5px;
+  border-radius: 8px;
+}
+
+.ul-list:hover {
+  background: #2E2E2E;
+}
+
+.ul-list li span {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  text-align: center;
+  background-color: red;
+}
+
+.form-input {
+  width: 350px;
+  height: 35px;
+  border-radius: 5px;
+  outline: none;
+}
+</style>
+  <body style="background: #111215; background-attachment: fixed; background-size: cover;">
+    <!-- Your playlist -->
+    <section id="main">
+    <aside id="sidebar">
+    <div class="dark radius-good margin-add-playlist">
+      {% if user.is_authenticated %}
+        <h2>Your Playlist</h2>
+          <form method="POST" class="form-list-setting" action="{% url 'playlist' %}">
+            {% csrf_token %}
+            <input class="form-input" type="text" name="playlistName" id="txt" placeholder="New playlist" required>
+            <button class="form-button btn-list" type="submit">
+              <i class="fa fa-plus" aria-hidden="true"></i>
+            </button>
+          </form>
+          <ul class="ul-list">
+          </ul>
+          {% for error_message in messages %}
+            <h3>{{error_message}}</h3>
+          {% endfor %} 
+          {% if myPlaylist%}
+           <table>
+             <form method="GET">
+             {% for playlist in myPlaylist %}
+             <!-- Playlist here -->
+              {% csrf_token %}
+                <tr>
+                  
+                  <th class="ul-list"><a href="/playlist/{{playlist.id}}">{{ playlist.playlistName }}</a></th>
+                  <th><button class="button_1" type="submit" name="playlistID" value="{{playlist.id}}">-</button></th>
+                </tr>
+              
+            {% endfor %}
+          </form>
+          </table>
+        
+          {% endif %}
+        
+      {% else %}
+      <div style="text-align: center;">
+        <h2>Please login or register.</h2>
+        <a href="{% url 'login' %}">
+          <button class="button_1" type="submit">Login</button>
+        </a>
+        <a href="{% url 'register' %}">
+          <button class="button_1" type="submit">Register</button>
+        </a>
+      </div>
+      {% endif %}
+        
+    </aside>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    {% include 'app_general/components/musicBox.html' %}
+{% endblock %}

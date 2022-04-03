@@ -1,0 +1,244 @@
+{% extends 'app_general/components/base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+<style>
+
+
+    header{
+  background:#000000;
+  color:#ffffff;
+  padding-top:30px;
+  min-height:70px;
+  border-bottom:#e8491d 3px solid;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+    #songBody {
+      background: black;
+      display: block;
+      overflow: auto;
+    }
+
+    table {
+      margin-top: 30px;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th {
+      text-align: center;
+      border-bottom: 1px solid #a7a7a7;
+    }
+
+    td, th {
+      padding: 15px;
+      color: white;
+      background: black;
+    }
+
+    td:nth-child(2) {
+      text-align: center;
+      color: #a7a7a7;
+    }
+
+    td a {
+      color: white;
+      text-decoration: none;
+    }
+
+    button {
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    h1 {
+      color: white;
+      margin-top: 30px;
+    }
+
+
+    /* Select playlist */
+select {
+  /* Reset Select */
+  appearance: none;
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+  /* Personalize */
+  flex: 1;
+  padding: 0 1em;
+  color: #fff;
+  background-color: var(--darkgray);
+  background-image: none;
+  cursor: pointer;
+}
+/* Remove IE arrow */
+select::-ms-expand {
+  display: none;
+}
+/* Custom Select wrapper */
+.select {
+  position: relative;
+  display: flex;
+  width: 10em;
+  height: 3em;
+  border-radius: .25em;
+  overflow: hidden;
+  background-color: #34495e;
+}
+/* Arrow */
+.select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1em;
+  background-color: #34495e;
+  transition: .25s all ease;
+  pointer-events: none;
+}
+/* Transition */
+.select:hover::after {
+  color: #f39c12;
+  background-color: #34495e;
+}
+
+#playlist-option option{
+  background-color: #34495e;
+}    
+
+#boxes {
+    margin-top: 0px;
+}
+
+#boxes .box {
+    float: left;
+    text-align: center;
+    width: 20%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#boxes .box h1{
+    text-shadow: 1px 1px 10px black;
+    position: relative;
+    top: 30px;
+}
+
+.recommended {
+    margin-top: 10px;
+}
+
+.img-recom {
+    border-radius: 10px;
+}
+.text-recom {
+    color: lightgray;
+    font-size: 30px;
+}
+.bottom-album {
+    margin-bottom: 120px;
+}
+</style>
+
+    <!-- {% if songFound %}
+        {% for song in songFound %}
+            <h1><a href="{{song.songFile.url}}">{{song.songName}}  {{song.length}}  {{song.albumID}}  {{song.artistID}}</a></h1>
+        {% endfor %}
+    {% comment %} {% else %}
+        <h1>No data for {{ search }}</h1> {% endcomment %}
+    {% endif %}
+    {% if artistFound %}
+        {% for artist in artistFound %}
+            <h1><a href="/artist/{{artist.artistID}}">{{artist.artistName}}  {{artist.nationality}}  {{artist.genre}}</a></h1>
+        {% endfor %}
+    {% comment %} {% else %}
+        <h1>No data for {{ search }}</h1> {% endcomment %}
+    {% endif %}
+
+    {% if albumFound %}
+        {% for album in albumFound %}
+            <h1><a href="/album/{{album.albumID}}">{{album.albumName}}  {{album.description}}  {{album.artistID}}</a></h1>
+        {% endfor %}
+    {% comment %} {% else %}
+        <h1>No data for {{ search }}</h1> {% endcomment %}
+    {% endif %} -->
+
+<body id="songBody">
+  {% if songFound %}
+    <div class="container">
+    <h1>Songs</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Length</th>
+            <th>Album</th>
+            <th>Artist</th>
+            <th></th>
+        </tr>
+    
+        {% for song in songFound %}
+        <tr id="playlist">
+          <td><a id="music-play" href="{{song.songFile.url}}">{{ song.songName }}</a></td> 
+          <td>{{ song.length }}</td>
+          <td><a href="/album/{{ song.albumID.albumID }}"> {{ song.albumID }}</div></td>
+          <td><a href="/artist/{{ song.artistID.artistID }}">{{ song.artistID }}</a></td>
+        
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+    </div>
+    {% if artistFound %}
+    <section id="boxes">
+        <div class="container">
+          <h1>Artists</h1>
+    
+        {% for artist in artistFound %}
+          <a href="/artist/{{ artist.artistID }}">
+          <div class="box" style="background:url('{{ artist.picture.url }}') no-repeat; background-size: cover; background-position: center center; "> 
+              <h1 class="name-artist">{{ artist.artistName }} <h1>
+          </div>
+          </a>
+        {% endfor %}
+    {% endif %}
+        </div>
+      </section>
+
+    {% if albumFound %}
+    <section class="recommended">
+        <div class="container">
+            <h1> Album </h1>
+        </div>
+        </section>
+        
+    <section id="boxes" class="bottom-album">
+            <div class="container">
+              {% for album in albumFound %}
+              <a href="/album/{{ album.albumID }}">
+                <div class="box" style="background:url('{{ album.picture.url }}') no-repeat; background-size: cover; background-position: center center; "> 
+                  <h1 class="name-artist">{{ album }} <h1>
+                </div>
+              </a>
+                {% comment %} <h1 class="name-artist">{{ album }}</h1>
+                <img class="img-adjust img-recom" src="{{ album.picture.url }}">
+              </div></a> {% endcomment %}
+              {% endfor %}
+              {% endif %}
+            </div>
+    </section>
+    {% if not found_status %}
+    <h3 style="text-align:center; color:#fff">No results for {{ search }}.</h3>
+    {% endif %}
+</body>
+    {% include 'app_general/components/musicBox.html' %}
+
+{% endblock %}

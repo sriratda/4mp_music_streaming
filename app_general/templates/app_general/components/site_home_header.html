@@ -1,0 +1,24 @@
+<div class="container">
+  <div id="branding">
+    <a href="{% url 'home' %}" title="4PM Music Home"><img src="../../static/app_general/logo.png" alt="4pm-music"></a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="{% url 'home' %}">Home</a></li>
+      <li><a href="{% url 'artist' %}">Artists</a><li>
+      <li><a href="{% url 'song' %}">Songs</a><li>
+      {% if user.is_authenticated %}
+      <li><a href="{% url 'playlist' %}"> {{ user.username }} Playlist</a></li>
+      <li><a href="{% url 'logout' %}">Log Out</a></li>
+      {% else %}
+      <li><a href="{% url 'login' %}">Log In</a></li>
+      <li><a href="{% url 'register' %}">Register</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+  <form method="POST" action="/search/">
+    {% csrf_token %}
+    <input type="search" name="search" placeholder="Search"/>
+    <input type="submit" hidden />
+  </form>
+</div>

@@ -1,0 +1,144 @@
+{% extends 'app_general/components/base.html' %}
+
+{% block title %}Playlist Detail{% endblock %}
+
+{% block content %}
+
+<style>
+ header{
+  background:#000000;
+  color:#ffffff;
+  padding-top:30px;
+  min-height:70px;
+  border-bottom:#e8491d 3px solid;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+
+
+    #songBody {
+      background: black;
+      display: block;
+      overflow: auto;
+    }
+
+    table {
+      margin-top: 30px;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 150px;
+    }
+    th {
+      text-align: center;
+      border-bottom: 1px solid #a7a7a7;
+    }
+
+    td, th {
+      padding: 15px;
+      color: white;
+      background: black;
+    }
+
+    td:nth-child(2) {
+      text-align: center;
+      color: #a7a7a7;
+    }
+
+    td a {
+      color: white;
+      text-decoration: none;
+    }
+
+    button {
+        border-radius: 4px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    h1 {
+      color: white;
+      margin-top: 50px;
+    }
+</style>
+  <body style="background: black; background-attachment: fixed; background-size: cover;">
+      <!-- <section id="main">
+          <aside id="sidebar">
+            <div class="dark radius-good">
+              <h2>{{ myPlaylist.playlistName }}</h2>
+              {% comment %} {% include 'app_general/components/musicBox.html' %} {% endcomment %}
+              {% if songs %}
+              <ul id="playlist">
+                <tr>
+                  <td class="underline-table-row">Name</td>
+                  <td class="underline-table-row">Length</td>
+                  <td class="underline-table-row">Artist</td>
+              </tr>
+              
+                <form method="POST">
+                  {% csrf_token %}
+                {% for song in songs %}
+                <table>
+                  <tr>
+                    <td><li class="current-song"><a id="music-play" href="{{song.songFile.url}}">{{song.songName}} {{song.length}} {{song.artistID}}</a></li></td>
+                    <td><button class="button_1" name="songID" value="{{song.songID}}">-</button></td>
+                  </tr>
+                </table>
+                {% endfor %}
+              </form>
+              {% else %}
+                <h3>No song in your playlist</h3>
+              {% endif %}
+              </ul>
+          </div>
+          </aside>
+        </div>
+      </section> -->
+
+    <div class="container">
+    <h1>{{myPlaylist.playlistName}}</h1>
+    <table>
+      {% if songs %}
+    <form method="POST">
+      {% csrf_token %}
+    <tr>
+        <th>Name</th>
+        <th>Length</th>
+        <th>Album</th>
+        <th>Artist</th>
+    </tr>
+    {% for song in songs %}
+    <tr id="playlist">
+      <td class="current-song"><a id="music-play" href="{{song.songFile.url}}">{{ song.songName }}</a></td> 
+      <td>{{ song.length }}</td>
+      <td><a href="/album/{{ song.albumID.albumID }}"> {{ song.albumID }}</a></div></td>
+      <td><a href="/artist/{{ song.artistID.artistID }}">{{ song.artistID }}</a></td>
+    {% if user.is_authenticated %}
+    <!-- Button delete song -->
+        <td>
+          <button class="button_1" name="songID" value="{{song.songID}}">-</button>
+        </td>
+    {% endif %}
+    </tr>
+    {% endfor %}
+  </form> }
+  {% else %}
+    <tr>
+        <th>There is no song in this playlist.</th>
+    </tr>
+  {% endif %}
+    </table>
+  </div>
+      {% include 'app_general/components/musicBox.html' %}
+      {% comment %} <footer>
+        <p>4PM MUSIC, Copyright &copy; 2022</p>
+      </footer> {% endcomment %}
+
+      {% comment %} <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+      <script src="./js/script.js"></script>
+
+    </body> {% endcomment %}
+    
+{% endblock  %}

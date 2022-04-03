@@ -1,0 +1,119 @@
+{% extends 'app_general/components/base.html' %}
+{% load static %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'app_general/style.css' %}"/>
+
+<style>
+  body {
+    background: black;
+  }
+
+  header{
+    background:#000000;
+    color:#ffffff;
+    padding-top:30px;
+    min-height:70px;
+    border-bottom:#e8491d 3px solid;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+
+  h3 {
+    color:white;
+  }
+
+  img {
+    border-radius: 10px;
+  }
+  
+  footer {
+    width: 100%;
+    padding:20px;
+    margin-top:20px;
+    color:#ffffff;
+    background-color:#e8491d;
+    text-align: center;
+    position: static;
+  }
+
+
+
+  table {
+      margin-top: 30px;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 150px;
+  
+    }
+    th {
+      text-align: center;
+      font-size: 30px;
+    }
+
+    td, th {
+      padding: 15px;
+      color: white;
+      background: black;
+      text-align: center;
+      
+    }
+
+    
+
+    td a {
+      color: white;
+      text-decoration: none;
+    }
+    
+
+</style>
+
+<section id="showcase" style="min-height:400px; background-image:url({% static 'app_general/concert.jpg' %}); no-repeat 0 -400px; text-align:center; color:#ffffff; background-size: cover;">
+  <div class="container">
+      <h1 class="main-center">4PM<br/>MUSIC</h1>
+    <p>4PM Music มิวสิคสตรีมมิ่งใหม่ล่าสุด มีสุดยอดฟังก์ชันครบครัน ฟังได้ทุกที่ทุกเวลา ใครๆก็เลือกฟัง "4PM Music"</p>
+  </div>
+</section>
+<section id="boxes">
+  <div class="container">
+    {% for rand in random %}
+    <a href="/artist/{{ rand.artistID }}"><div class="box"> 
+      <img class = "img-adjust" src="{{ rand.picture.url }}">
+     <h3>{{ rand.artistName }}</h3>
+    </div></a>
+    {% endfor %}
+  </div>
+</section>
+<section id="hot-music">
+  <div class="container">
+  <table>
+  <tr>
+    <th>Hit songs</th>
+    <th>Good vibe songs</th>
+  </tr>
+  {% for hit,nHit in recommend_song %}
+  <tr id="playlist">
+      <td><a id="music-play" href="{{hit.songFile.url}}">{{hit}}</a></td>
+      <td><a id="music-play" href="{{nHit.songFile.url}}">{{nHit}}</a></td>
+  </tr>
+  {% endfor %}
+  </table>
+  </div>  
+</section>
+
+
+
+{% include 'app_general/components/musicBox.html' %}
+
+<footer>
+  <p>4PM MUSIC, Copyright &copy; 2022</p>
+</footer>
+
+
+
+{% endblock %}

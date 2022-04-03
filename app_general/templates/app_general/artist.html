@@ -1,0 +1,147 @@
+{% extends 'app_general/components/base.html' %}
+
+{% load static %}
+
+{% block title %}Artist{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: rgb(196,196,196);
+        background: radial-gradient(circle, rgba(196,196,196,1) 0%, rgba(0,0,0,1) 87%);
+        background-repeat: no-repeat;
+        background-size: cover;
+        font: 15px/1.5 Arial, Helvetica,sans-serif;
+        padding:0;
+        margin:0;
+    }
+
+    .container{
+        width:80%;
+        margin:auto;
+        overflow:hidden;
+    }
+
+    .dark{
+        padding:15px;
+        background:rgb(24, 24, 24);
+        color:#ffffff;
+        margin-top:15px;
+        margin-bottom:15px;
+        border-radius: 12px;
+        text-shadow: 1px 1px 9px black;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+    header{
+        background:#000000;
+        color:#ffffff;
+        padding-top:30px;
+        min-height:70px;
+        border-bottom:#e8491d 3px solid;
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    .artist-detail {
+        float: left;
+        width: 97%;
+        position: relative;
+        height: 150px;
+    }
+
+    .artist-detail img {
+        width: 110px;
+        height: 110px;
+    }
+
+    h1 .name-artist {
+        display:inline;
+        position: absolute;
+        top: 10px;
+    }
+
+    h1 a {
+        font-size: 50px;
+        color: white;
+        text-decoration: none;
+    }
+
+    .artist-nationality {
+        font-size: 20px;
+    }   
+    
+    h1 {
+        color: white;
+    }
+
+    .artist-container {
+        margin-bottom: 120px;
+    }
+
+#boxes {
+    margin-bottom: 120px;
+}    
+    
+#boxes .box {
+    float: left;
+    text-align: center;
+    width: 20%;
+    height: 150px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+#boxes .box h1{
+    text-shadow: 1px 1px 10px black;
+    position: relative;
+    top: 40px;
+}
+
+.header-artist {
+    font-size: 2em;
+}
+
+.filter-collection {
+    display: inline;
+}
+
+.filter-collection a {
+    color: #a7a7a7;
+    text-decoration: none;
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.filter-box {
+    margin-bottom: 10px;
+}
+
+</style>
+
+<section id="boxes">
+  <div class="container">
+    <h1 class="header-artist">Artists ({{numberOfArtist}})</h1>
+    {% comment %} {% include 'app_general/components/getFilter.html' %} {% endcomment %}
+    <div class="filter-box">
+    {% for genre in allGenre  %}
+    <p class="filter-collection"><a href="/filter/{{genre}}">{{genre}}</a></p>
+    {% endfor %}
+    </div>
+    {% for artist in artists %}
+    <a href="/artist/{{ artist.artistID }}">
+    <div class="box" style="background:url('{{ artist.picture.url }}') no-repeat; background-size: cover; background-position: center center; "> 
+        <h1 class="name-artist">{{ artist.artistName }} <h1>
+    </div>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- <span class="artist-nationality">{{ artist.nationality }} {{ artist.description }}<br>{{ artist.genre }}</span> -->
+{% include 'app_general/components/musicBox.html' %}
+{% endblock %}
